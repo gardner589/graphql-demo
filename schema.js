@@ -1,3 +1,4 @@
+//**|Shout out to mpj(https://github.com/mpj) and Fun Fun Functions for the great videos!|**
 // We're using Axios to make our API calls from the server
 const axios = require("axios");
 // Importing each part of the GraphQL
