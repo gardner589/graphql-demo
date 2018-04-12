@@ -1,0 +1,142 @@
+https://www.googleapis.com/language/translate/v2?key=AIzaSyAA92Rtc2tRjuX3CH_itoH1VbPWCHhdaRE&source=en&target=es&q=Congress managed to pass a budget deal early Friday morning after a brief government shutdown, brought to you by Kentucky Sen. Rand Paul—the second shutdown in three weeks. President Trump signed the bill shortly after. Read more...
+
+{
+  # here we're querying the XKCD API and searching by number/id
+english: xkcd (num: 666)
+  {
+  num
+  link
+  year
+  img
+  title
+  alt
+  transcript
+  }
+  
+  # We've also hooked into the Google Translate API so we can translate our results
+  # after we get them. Think of all the cool (and useful)API interactions!
+ spanish: xkcd (num: 666)
+  {
+  title (lang: "es")
+  alt (lang: "es")
+  transcript (lang: "es")
+  }
+
+  # We can decide exactly how much and what data we want to get back
+  justText: xkcd (num: 666) {
+  transcript
+  title
+  alt
+  }
+  
+  # We also have some error handling that lets us get results if we don't provide any args
+  noArgs: xkcd {
+  num
+  link
+  year
+  img
+  title
+  alt
+  transcript
+  }
+  
+  # The "new" in front of xkcd is called a 'field alias' and it allows us to run
+  # as many of the same queries as we'd like
+  new: xkcd (num: 1200) {
+  num
+  link
+  year
+  img
+  title
+  alt
+  transcript
+  }
+  
+  # Combining our queries all sorts of ways, different comic, only text, and in French!
+  newFrench: xkcd (num: 1522) {
+  num
+  link
+  title (lang: "fr")
+  alt (lang: "fr")
+  transcript (lang: "fr")
+  }
+
+  # Default query for our news object is set to "Uplifting" by our function
+  news
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+}
+  # We can use as many field aliases as we need to 
+  nasa: news (query: "NASA")
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+}
+  dogs: news(query: "dogs")
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+  }
+  # And mix & match our API calls even between GraphQL Objects
+  germanDogs: news(query: "dogs")
+  {
+  source
+  title (lang: "de")
+  author
+  summary
+  url
+  published
+  }
+}
+
+  # Default query for news is set to "Uplifting"
+  news
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+}
+  trump: news (query: "trump")
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+}
+  dogs: news(query: "dogs")
+  {
+  source
+  title
+  author
+  summary
+  url
+  published
+  }
+  germanDogs: news(query: "dogs")
+  {
+  source
+  title (lang: "de")
+  author
+  summary
+  url
+  published
+  }
+}
